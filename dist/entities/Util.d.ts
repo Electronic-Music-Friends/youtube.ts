@@ -1,0 +1,31 @@
+import stream from "stream";
+import api from "../API";
+import { YoutubeDownloadOptions, YoutubeVideo } from "../types";
+export declare class Util {
+    private readonly api;
+    constructor(api: api);
+    resolveID: (resolvable: string, type: string) => Promise<string>;
+    downloadMyVideo: (videoResolvable: string, key: string, cookie: string, dest?: string) => Promise<string>;
+    iteratePages: (searchResults: any, params: any, limit?: number) => Promise<any[]>;
+    downloadMyVideos: (yourChannel: string, key: string, cookie: string, dest?: string, limit?: number) => Promise<string[]>;
+    awaitStream: (writeStream: stream.Writable) => Promise<unknown>;
+    downloadVideo: (videoResolvable: string, dest?: string, downloadOptions?: YoutubeDownloadOptions) => Promise<string>;
+    downloadVideos: (videos: string[] | YoutubeVideo[], dest?: string, ytdlOptions?: YoutubeDownloadOptions) => Promise<string[]>;
+    downloadChannelVideos: (channelResolvable: string, dest?: string, ytdlOptions?: YoutubeDownloadOptions, limit?: number) => Promise<string[]>;
+    downloadMP3: (url: string, dest?: string, downloadOptions?: YoutubeDownloadOptions) => Promise<string>;
+    downloadMP3s: (videos: string[] | YoutubeVideo[], dest?: string) => Promise<string[]>;
+    downloadChannelMP3s: (channelResolvable: string, dest?: string, limit?: number) => Promise<string[]>;
+    streamMP3: (videoResolvable: string) => Promise<NodeJS.ReadableStream>;
+    /**
+     * Downloads the thumbnail of a youtube video.
+     */
+    downloadThumbnail: (videoResolvable: string, folder?: string, noDL?: boolean) => Promise<any>;
+    /**
+     * Gets a video's title from the url.
+     */
+    getTitle: (videoResolvable: string) => Promise<any>;
+    /**
+     * Gets a video's thumbnail link from the url.
+     */
+    getThumbnailSrc: (videoResolvable: string) => Promise<any>;
+}
